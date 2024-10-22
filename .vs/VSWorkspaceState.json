@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\template",
-    "\\template\\coloshop-master",
     "\\WebBanHangOnline",
     "\\WebBanHangOnline\\WebBanHangOnline",
+    "\\WebBanHangOnline\\WebBanHangOnline\\Admin",
+    "\\WebBanHangOnline\\WebBanHangOnline\\Admin\\Controller",
     "\\WebBanHangOnline\\WebBanHangOnline\\Models",
     "\\WebBanHangOnline\\WebBanHangOnline\\Views",
     "\\WebBanHangOnline\\WebBanHangOnline\\Views\\Article",
     "\\WebBanHangOnline\\WebBanHangOnline\\Views\\Contact",
     "\\WebBanHangOnline\\WebBanHangOnline\\Views\\Home"
   ],
-  "SelectedNode": "\\WebBanHangOnline\\WebBanHangOnline\\Views\\Account\\ExternalLoginFailure.cshtml",
+  "SelectedNode": "\\WebBanHangOnline\\WebBanHangOnline\\Admin\\Controller\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
