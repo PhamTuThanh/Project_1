@@ -11,12 +11,12 @@ using WebBanHangOnline.Models.ViewModels;
 
 namespace WebBanHangOnline.Areas.Admin.Controllers
 {
-    
+    [Authorize(Roles = "Admin")]
     public class OrderController : Controller
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
-     
+        // GET: Admin/Order
         public ActionResult Index(int? page)
         {
             var items = db.Orders.OrderByDescending(x => x.CreatedDate).ToList();
@@ -76,19 +76,19 @@ on od.ProductId equals p.Id
                         };
             if (!string.IsNullOrEmpty(fromDate))
             {
-                DateTime start = DateTime.ParseExact(fromDate, "dd/MM/yyyy");
+                DateTime start = DateTime.ParseExact(fromDate, "dd/MM/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
                 query = query.Where(x => x.CreatedDate >= start);
             }
             if (!string.IsNullOrEmpty(toDate))
             {
-                DateTime endDate = DateTime.ParseExact(toDate, "dd/MM/yyyy");
+                DateTime endDate = DateTime.ParseExact(toDate, "dd/MM/yyyy", CultureInfo.GetCultureInfo("vi-VN"));
                 query = query.Where(x => x.CreatedDate < endDate);
             }
             var result = query.GroupBy(x => DbFunctions.TruncateTime(x.CreatedDate)).Select(r => new
             {
                 Date = r.Key.Value,
-                TotalBuy = r.Sum(x => x.OriginalPrice * x.Quantity), 
-                TotalSell = r.Sum(x => x.Price * x.Quantity) 
+                TotalBuy = r.Sum(x => x.OriginalPrice * x.Quantity), // tổng giá bán
+                TotalSell = r.Sum(x => x.Price * x.Quantity) // tổng giá mua
             }).Select(x => new RevenueStatisticViewModel
             {
                 Date = x.Date,
